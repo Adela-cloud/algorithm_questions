@@ -14,4 +14,51 @@ package week_28;
 
 public class LinkedListCycle {
 
+    //solution 1
+    public static boolean isPalindrome(ListNode head) {
+        //find the middle of the list
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        //reverse the second half of the list
+        ListNode prev = null;
+        ListNode curr = slow;//the middle node
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev; //curr.next is null, break the link between the middle node and the next node
+            prev = curr;
+            curr = next;
+            //     curr =curr.next; -> if we do this, curr becomes null as we set curr.next as null earlier
+            // so, instead we do: current = next , as it points curr.next before it becomes null;
+        }
+
+        //check if the first and the second half are identical
+        while (prev != null) {
+            if (head.val != prev.val) {
+                return false;
+            }
+            head = head.next;
+            prev = prev.next;
+        }
+        return true;
+    }
+
+    //solution2  - with stack
+
+    public static void main(String[] args) {
+        // Create a sample linked list: 1 -> 2 -> 3 -> 2 -> 1
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(2);
+        head.next.next.next.next = new ListNode(1);
+
+        boolean result = isPalindrome(head);
+        System.out.println("Is palindrome: " + result);
+
+    }
 }
