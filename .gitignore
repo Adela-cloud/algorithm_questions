@@ -6,6 +6,7 @@ target/
 *.war
 *.ear
 *.db
+.gitignore
 
 
 ### IntelliJ IDEA ###
@@ -28,14 +29,3 @@ mvnw.cmd
 release.properties
 
 
-
-### Eclipse ###
-
-### NetBeans ###
-
-### VS Code ###
-.vscode/
-
-### Mac OS ###
-.DS_Store
-.svn
