@@ -23,6 +23,7 @@ package week_03;
 
 public class IsLeapYear {
 
+    //time & space: O(1)
     public static boolean isLeapYear(int year){
         if ((year % 4 ==0 && year % 100 != 0 )|| year % 400==0 ){
             System.out.println(year + "is leap year");
@@ -35,6 +36,12 @@ public class IsLeapYear {
     public static void main(String[] args) {
         System.out.println(isLeapYear(2024));
         System.out.println(isLeapYear(1900));
+    }
+
+
+    //with ternary
+    public static boolean isLeap(int year){
+        return year % 100 ==0 ? year % 400== 0: year % 4==0;
     }
 
 }

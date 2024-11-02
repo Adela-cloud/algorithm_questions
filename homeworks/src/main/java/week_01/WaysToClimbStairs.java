@@ -20,4 +20,10 @@ public class WaysToClimbStairs {
         return ways[n];
     }
 
+
+    public static void main(String[] args) {
+        System.out.println(waysToClimb(1));
+        System.out.println(waysToClimb(5));
+    }
+
 }
