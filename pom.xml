@@ -12,8 +12,9 @@
         <module>leetcode-top-interview</module>
         <module>homeworks</module>
         <module>codewars</module>
-        <module>untitled</module>
         <module>data-structure</module>
+        <module>data-structure</module>
+        <module>codewars</module>
     </modules>
 
     <properties>

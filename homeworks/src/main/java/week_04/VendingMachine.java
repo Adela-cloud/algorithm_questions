@@ -38,7 +38,6 @@ public class VendingMachine {
            changeInCents %= 5;
 
            int penny= (changeInCents / 1);
-           changeInCents %= 1;
 
            System.out.printf("your change is : %d dollar bills, %d quarters, %d dimes, %d nickles, %d pennies",
                    dollarBill,quarter, dime,nickle,penny);
