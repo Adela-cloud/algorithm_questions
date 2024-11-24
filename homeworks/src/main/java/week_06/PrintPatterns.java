@@ -1,6 +1,6 @@
 package week_06;
 
-public class RectanglePattern {
+public class PrintPatterns {
     /**
      * print a rectangle pattern with  *
      */
@@ -15,8 +15,18 @@ public class RectanglePattern {
             }
         }
 
+    public static void printTriangle(int row){
+        for (int i= 1; i <= row; i++){
+            for (int j= 0; j < i; j++){
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
        printRectangle(4, 6);
+       printTriangle(6);
     }
 
 
