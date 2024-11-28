@@ -16,6 +16,13 @@
         <module>data-structure</module>
         <module>codewars</module>
     </modules>
+    <dependencies>
+        <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.12.0</version>
+        </dependency>
+    </dependencies>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

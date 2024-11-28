@@ -1,9 +1,8 @@
 package kyu6_kyu5;
 
-import java.util.ArrayList;
+import org.apache.commons.lang3.ArrayUtils;
 import java.util.Arrays;
-import java.util.HashSet;
-
+import java.util.List;
 /**Your goal in this kata is to implement a difference function, which subtracts one list from another and returns the result.
 
  It should remove all values from list a, which are present in list b keeping their order.
@@ -16,37 +15,47 @@ import java.util.HashSet;
 
 public class SubtractArrays {
 
-    // Solution 1: with ArrayList
-    //time complexity : O(m+n)
-    //space complexity : O(m) -> for hashset
-    public static int[] arrayDiff(int[] a, int[] b) {
-        ArrayList<Integer> result = new ArrayList<>();
-
-        // Convert array b to HashSet for O(1) lookup
-        HashSet<Integer> setB = new HashSet<>();
-        for (int num : b) {
-            setB.add(num);
+    //solution 1: with ArrayUtils class
+    //time: O(mn)
+    //ArrayUtils.removeAllOccurrences returns a new array with potentially fewer elements than the original
+    //so the space com is O(n)
+    public static int[] subtractArray(int[] a, int[]  b){
+        for (int i = 0; i < b.length ; i++) {
+            a = ArrayUtils.removeAllOccurrences(a, b[i]);
         }
-
-        // Add elements from a that are not in b
-        for (int num : a) {
-            if (!setB.contains(num)) {
-                result.add(num);
-            }
-        }
-
-        // Convert ArrayList back to array
-        return result.stream().mapToInt(Integer::intValue).toArray();
+        return a;
     }
 
 
-    // Solution 2: with streams
+    //solution 2: with list and stream
+    //time: O(mn)  arr a -> m    arr b-> n
+    //space: O(o)
+    public static int[] subtractArray1(int[] a, int[] b){
+        List<Integer>  listA= new java.util.ArrayList<>(Arrays.stream(a)//creates an int stream
+                .boxed() //convert int stream to stream <Integer>
+                .toList());// convert stream into list
+        List<Integer>  listB= Arrays.stream(b).boxed().toList();
+
+       listA.removeAll(listB);
+
+     return listA.stream().mapToInt(e -> e )//take each object and return it in its primitive type
+                .toArray();
+    }
+
+
+    // Solution 3: with streams
     //time complexity : O(m+n)
     //space complexity : O(1)
-    public static int[] arrayDiff1(int[] a, int[] b) {
+    public static int[] subtractArray2(int[] a, int[] b) {
         return Arrays.stream(a)                           // O(n)
                 .filter(x -> Arrays.stream(b)        // O(m) for each element in a
                         .noneMatch(y -> y == x)) // O(1) comparison
                 .toArray();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(subtractArray(new int[]{2, 3, 3, 2, 1, 2, 4}, new int[]{2, 1})));
+       System.out.println(Arrays.toString(subtractArray1(new int[]{2, 3, 3, 2, 1, 2, 4}, new int[]{2, 1})));
+        System.out.println(Arrays.toString(subtractArray2(new int[]{2, 3, 3, 2, 1, 2, 4}, new int[]{2, 1})));
     }
 }

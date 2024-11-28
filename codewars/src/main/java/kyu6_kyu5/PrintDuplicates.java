@@ -60,11 +60,21 @@ public class PrintDuplicates {
         //or we can also write this in lambda: Collectors.toMap(entry-> entry.get key, entry-> entry. get value)
     }
 
+    //counting the frequency
+    public static Map<Character, Integer> count(String str) {
+        Map<Character, Integer>   map= new HashMap<>();
+        for(char ch: str.toLowerCase().toCharArray()){
+            map.put(ch, map.getOrDefault(ch, 0)+1);
+        }
+        return map;
+    }
+
 
 
 
     public static void main(String[] args) {
         System.out.println(countDuplicatesWithMap("aabbcde"));
         System.out.println(countDuplicatesWithStream("aabbcde"));
+        System.out.println(count("aabbcde"));
     }
 }
