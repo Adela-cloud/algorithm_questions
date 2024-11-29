@@ -47,9 +47,10 @@ public class SubtractArrays {
     //time complexity : O(m+n)
     //space complexity : O(1)
     public static int[] subtractArray2(int[] a, int[] b) {
-        return Arrays.stream(a)                           // O(n)
-                .filter(x -> Arrays.stream(b)        // O(m) for each element in a
-                        .noneMatch(y -> y == x)) // O(1) comparison
+        return Arrays.stream(a)
+                .filter(x -> Arrays.stream(b)
+                        .noneMatch(y -> y == x)) // returns boolean-> if there is no matching element y(in arr b) to x element(in arr a ), returns TRUE, then x will be included in the result stream.
+                                                 //-> if there is matching element y(in arr b) to x element(in arr a ), returns FALSE, then x will be excluded from the result stream.
                 .toArray();
     }
 
